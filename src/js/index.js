@@ -13,3 +13,6 @@ const dueDateItem = document.createElement("p")
 dueDateItem.textContent = exampleItem.dueDate
 content.appendChild(dueDateItem)
 
+document.getElementById("add_project").addEventListener('click', () => {
+    
+})
