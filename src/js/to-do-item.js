@@ -1,4 +1,4 @@
-class toDoItem {
+export class toDoItem {
     constructor(title, description, dueDate, priority, notes, checklist){
         this.title = title
         this.description = description
