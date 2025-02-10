@@ -7,9 +7,13 @@ const uicontrol = new UIcontroller()
 
 document.getElementById("add_project").addEventListener('click', () => {
     uicontrol.addProjectForm()
-    //uicontrol.addProject()
+    
+    document.getElementById("submit").addEventListener('click', () => {
+        event.preventDefault()
+        uicontrol.addProject()
+    })
 })
 
 document.getElementById("show_project").addEventListener('click', () => {
-    uicontrol.showProject()
+    uicontrol.viewAllToDo()
 })
