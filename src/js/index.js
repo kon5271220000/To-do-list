@@ -15,5 +15,10 @@ document.getElementById("add_project").addEventListener('click', () => {
 })
 
 document.getElementById("show_project").addEventListener('click', () => {
-    uicontrol.viewAllToDo()
+    uicontrol.viewAllProjecs()
+
+    document.getElementById("viewTasks").addEventListener('click', () => {
+        uicontrol.addToDoItemForm()
+    })
 })
+
