@@ -1,33 +1,10 @@
 import { Project } from "./projects"
 
 export class UIcontroller {
-    projects = []
-
-    addProject(){
-        const id = document.getElementById("id").value
-        const name = document.getElementById("name").value
-        const newProject = new Project(id, name, false)
-        this.projects.push(newProject)
-        console.log("Add project success")
-    }
-
     addProjectForm(){
         const container = document.getElementById("content")
 
         const addProjectForm = document.createElement("form")
-        const idDiv = document.createElement("div")
-        const idLabel = document.createElement("label")
-        idLabel.textContent = "ID: "
-        idLabel.for = "id"
-        const idInput = document.createElement("input")
-        idInput.type = "text"
-        idInput.name = "id"
-        idInput.id = "id"
-
-        idDiv.appendChild(idLabel)
-        idDiv.appendChild(idInput)
-
-        addProjectForm.appendChild(idDiv)
 
         const nameDiv = document.createElement("div")
         const nameLabel = document.createElement("label")
@@ -50,36 +27,46 @@ export class UIcontroller {
         container.appendChild(addProjectForm)
     }
 
-    viewAllProjecs(){
+    viewAllProjecs(projects){
         const container = document.getElementById("content")
 
         const projectsContainer = document.createElement("div")
 
-        for(let i = 0; i < this.projects.length; i++){
-            this.creatProjectCard(projectsContainer, i)
+        for(let i = 0; i < projects.length; i++){
+            this.creatProjectCard(projectsContainer, projects, i)
         }
 
         container.appendChild(projectsContainer)
     }
 
-    creatProjectCard(projectsContainer, index){
+    creatProjectCard(projectsContainer, projects, index){
         const projectCard = document.createElement("div")
+        projectCard.id = projects[index].id
+
             
         const projectName = document.createElement("h3")
-        projectName.textContent = this.projects[index].name
+        projectName.textContent = `#${projects[index].id}-${projects[index].name}`
         projectCard.appendChild(projectName)
+        
 
         const viewToDoBtn = document.createElement("button")
-        viewToDoBtn.textContent = "View tasks"
+        viewToDoBtn.textContent = "View To Do"
         viewToDoBtn.id = "viewTasks"
         projectCard.appendChild(viewToDoBtn)
 
+        const addToDoBtn = document.createElement("button")
+        addToDoBtn.textContent = "Add To Do"
+        addToDoBtn.id = "addToDo"
+        projectCard.appendChild(addToDoBtn)
+
         projectsContainer.appendChild(projectCard)
+
+        function getProjectId(){
+            return projects[index].id
+        }
+
     }
 
-    addToDoItem(){
-
-    }
 
     addToDoItemForm(){
         const container = document.getElementById("content")
@@ -129,18 +116,25 @@ export class UIcontroller {
         addToDoItemForm.appendChild(dueDateDiv)
 
         const priorityDiv = document.createElement("div")
-        const lowDiv = document.createElement("div")
-        lowDiv.onclick = "SelectPriority('low')"
-        lowDiv.textContent = "low"
-        priorityDiv.appendChild(lowDiv)
-        const mediumDiv = document.createElement("div")
-        mediumDiv.onclick = "SelectPriority('medium')"
-        mediumDiv.textContent = "medium"
-        priorityDiv.appendChild(mediumDiv)
-        const highDiv = document.createElement("div")
-        highDiv.onclick = "SelectPriority('high')"
-        highDiv.textContent = "high"
-        priorityDiv.appendChild(highDiv)
+
+        const priorities = [
+            { value: "low", label: "🔵 Thấp" },
+            { value: "medium", label: "🟡 Trung bình" },
+            { value: "high", label: "🔴 Cao" }
+        ];
+
+        priorities.forEach(({value, label}) => {
+            const radioLable = document.createElement("label")
+            radioLable.textContent = `${label}`
+
+            const radioInput = document.createElement("input")
+            radioInput.type = "radio"
+            radioInput.name = "priority"
+            radioInput.value = value
+
+            radioLable.appendChild(radioInput)
+            priorityDiv.appendChild(radioLable)
+        })
         
         addToDoItemForm.appendChild(priorityDiv)
 
@@ -171,9 +165,11 @@ export class UIcontroller {
         container.appendChild(addToDoItemForm)
     }
 
-
-
     viewToDos(){
+        
+    }
 
+    createToDoCard(){
+        
     }
 }

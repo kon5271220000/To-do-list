@@ -1,24 +1,32 @@
 import { toDoItem } from "./to-do-item"
 import { Project } from "./projects"
 import { UIcontroller} from "./UIcontroller"
+import { Logic } from "./logic"
 import "../style.css"
 
 const uicontrol = new UIcontroller()
+const logic = new Logic()
+const mainContent = document.getElementById("content")
 
 document.getElementById("add_project").addEventListener('click', () => {
+    mainContent.innerHTML = ''
     uicontrol.addProjectForm()
     
     document.getElementById("submit").addEventListener('click', () => {
         event.preventDefault()
-        uicontrol.addProject()
+        logic.addProject()
     })
 })
 
 document.getElementById("show_project").addEventListener('click', () => {
-    uicontrol.viewAllProjecs()
+    mainContent.innerHTML = ''
+    uicontrol.viewAllProjecs(logic.projects)
 
-    document.getElementById("viewTasks").addEventListener('click', () => {
+    document.getElementById("addToDo").addEventListener('click', () => {
         uicontrol.addToDoItemForm()
+
+    
     })
 })
+
 
