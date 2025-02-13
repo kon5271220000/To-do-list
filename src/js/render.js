@@ -3,6 +3,10 @@ import { toDoItem } from "./to-do-item"
 export class Render{
     content = document.getElementById("content")
 
+    createProjectAddForm(){
+        const projectCardForm = document.createElement("div")
+    }
+
     createProjectCard(project){
         const projectCard = document.createElement("div")
         projectCard.id = `${project.id}`
@@ -34,6 +38,7 @@ export class Render{
 
     createToDoCard(todoItem, container){
         const toDoCard = document.createElement("div")
+        toDoCard.className = "toDoItem"
 
         const toDoTitle = document.createElement("h4")
         toDoTitle.textContent = todoItem.title
@@ -49,7 +54,14 @@ export class Render{
         toDoCard.appendChild(todoInfo)
 
         container.appendChild(toDoCard)
-
-
     }
+
+    changeViewToDoButton(){
+        const viewToDoButton = document.getElementById("view_lists")
+
+        viewToDoButton.textContent = "Hide to Do List"
+        viewToDoButton.id = "hide_list"
+    }
+
+
 }

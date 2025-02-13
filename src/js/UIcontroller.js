@@ -22,7 +22,7 @@ export class UIcontroller{
         const project = this.projects.find(p => p.id === projectId)
 
         const container = document.getElementById(projectId)
-        container.innerHTML = ''
+        
 
         if(!project){
             console.error("project not found")
@@ -32,5 +32,20 @@ export class UIcontroller{
         for(let i = 0; i < project.todos.length; i++){
             this.render.createToDoCard(project.todos[i], container)
         }
+    }
+
+    hideProject(projectId){
+        for(let i = 0; i < this.projects.length; i++){
+            const removeProjectCard = document.getElementById((`${this.projects[i].id}`))
+            if(this.projects[i].id !== projectId && removeProjectCard){
+                removeProjectCard.style.display = "none"
+            }
+        }
+    }
+
+    hideToDoListBtn(){
+        this.render.changeViewToDoButton()
+        
+        const removeTodo = document.getElementsByClassName("todoItem")
     }
 }
