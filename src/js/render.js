@@ -4,7 +4,26 @@ export class Render{
     content = document.getElementById("content")
 
     createProjectAddForm(){
-        const projectCardForm = document.createElement("div")
+        const projectAddForm = document.createElement("div")
+
+        const nameLabel = document.createElement("label")
+        nameLabel.for = "nameProject"
+        nameLabel.textContent = "Name: "
+        const nameInput = document.createElement("input")
+        nameInput.type = "text"
+        nameInput.name = "nameProject"
+        nameInput.id = "nameProject"
+
+        projectAddForm.appendChild(nameLabel)
+        projectAddForm.appendChild(nameInput)
+
+        const submitInput = document.createElement("button")
+        submitInput.textContent = "Add"
+        submitInput.id = "addProjectFormBtn"
+
+        projectAddForm.appendChild(submitInput)
+        
+        this.content.appendChild(projectAddForm)
     }
 
     createProjectCard(project){
@@ -39,6 +58,7 @@ export class Render{
     createToDoCard(todoItem, container){
         const toDoCard = document.createElement("div")
         toDoCard.className = "toDoItem"
+        toDoCard.id = "toDoItem"
 
         const toDoTitle = document.createElement("h4")
         toDoTitle.textContent = todoItem.title

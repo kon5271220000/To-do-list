@@ -19,6 +19,18 @@ uicontroller.addProject(project3)
 project1.addToDo(todo1)
 project1.addToDo(todo2)
 
+//loadPage
+uicontroller.showProjects()
+
+document.getElementById("add_project").addEventListener('click', () => {
+    mainContent.innerHTML = ''
+    uicontroller.getProjectAddForm()
+    
+    document.getElementById("addProjectFormBtn").addEventListener('click', () => {
+        uicontroller.createNewProject()
+    })
+})
+
 document.getElementById("show_project").addEventListener('click', () => {
     mainContent.innerHTML = ''
     uicontroller.showProjects()
@@ -32,3 +44,4 @@ document.addEventListener("click", (event) =>{
         uicontroller.hideToDoListBtn()
     }
 })
+

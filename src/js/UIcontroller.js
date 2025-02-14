@@ -8,6 +8,20 @@ export class UIcontroller{
         this.projects.push(project)
     }
 
+    getProjectAddForm(){
+        this.render.createProjectAddForm()
+    }
+
+    createNewProject(){
+        const nameProject = document.getElementById("nameProject").value
+
+        const idProject = this.projects[this.projects.length-1].id + 1
+
+        const newProject = new Project(idProject, nameProject, false)
+
+        this.addProject(newProject)
+    }
+
     showProjects(){
         for(let i = 0; i < this.projects.length; i++){
             this.render.createProjectCard(this.projects[i])
@@ -45,7 +59,5 @@ export class UIcontroller{
 
     hideToDoListBtn(){
         this.render.changeViewToDoButton()
-        
-        const removeTodo = document.getElementsByClassName("todoItem")
     }
 }
