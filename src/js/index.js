@@ -42,6 +42,13 @@ document.addEventListener("click", (event) =>{
         uicontroller.showToDoList(projectId)
         uicontroller.hideProject(projectId)
         uicontroller.hideToDoListBtn()
+
+        
     }
+})
+
+document.getElementById("add_task").addEventListener('click', () => {
+    mainContent.innerHTML = ''
+    uicontroller.getToDoAddForm()
 })
 

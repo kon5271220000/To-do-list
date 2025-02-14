@@ -22,7 +22,7 @@ export class Render{
         submitInput.id = "addProjectFormBtn"
 
         projectAddForm.appendChild(submitInput)
-        
+
         this.content.appendChild(projectAddForm)
     }
 
@@ -50,9 +50,92 @@ export class Render{
         viewTaskButton.id = "view_lists"
         viewTaskButton.dataset.projectId = project.id
         projectCard.appendChild(viewTaskButton)
+
+        const addToDoBtn = document.createElement("button")
+        addToDoBtn.textContent = "Add new To Do Item"
+        addToDoBtn.id = "add_task"
+        addToDoBtn.dataset.projectId = project.id
+        projectCard.appendChild(addToDoBtn)
         
         this.content.appendChild(projectCard)
 
+    }
+
+    createAddToDoForm(){
+        const toDoAddForm = document.createElement("div")
+        
+        const titleLable = document.createElement("label")
+        titleLable.textContent = "Title: "
+        titleLable.for = "toDoTitle"
+        const titleInput = document.createElement("input")
+        titleInput.type = "text"
+        titleInput.name = "toDoTitle"
+        titleInput.id = "toDoTitle"
+
+        toDoAddForm.appendChild(titleLable)
+        toDoAddForm.appendChild(titleInput)
+
+        const desLabel = document.createElement("label")
+        desLabel.textContent = "Description: "
+        desLabel.for = "toDoDes"
+        const desInput = document.createElement("textarea")
+        desInput.name ="toDoDes"
+        desInput.id = "toDoDes"
+        desInput.cols = "50"
+        desInput.rows = "10"
+
+        toDoAddForm.appendChild(desLabel)
+        toDoAddForm.appendChild(desInput)
+
+        const dueDateLabel = document.createElement("label")
+        dueDateLabel.for = "toDoDueDate"
+        dueDateLabel.textContent = "Select due date"
+        const dueDateInput = document.createElement("input")
+        dueDateInput.type = "datetime-local"
+        dueDateInput.name = "toDoDueDate"
+        dueDateInput.id = "toDoDueDate"
+
+        const priorityDiv = document.createElement("div")
+        priorityDiv.textContent = "Select priority"
+        const priorities = [
+            {value: "low", lable: "🔵 low"},
+            {value: "medium", lable: "🟡 medium"},
+            {value: "high", label: "🔴 higg"}
+        ]
+        priorities.forEach(({value, label}) => {
+            const radioLabel = document.createElement("label")
+            radioLabel.textContent = `${label}`
+
+            const radioInput = document.createElement("input")
+            radioInput.type = "radio"
+            radioInput.name = "priority"
+            radioInput.value = "value"
+
+            priorityDiv.appendChild(radioLabel)
+            priorityDiv.appendChild(radioInput)
+        })
+
+        toDoAddForm.appendChild(priorityDiv)
+
+        const notesLabel = document.createElement("label")
+        notesLabel.for = "toDoNotes"
+        notesLabel.textContent = "Notes: "
+        const notesInput = document.createElement("textarea")
+        notesInput.name = "toDoNotes"
+        notesInput.id = "toDoNotes"
+        notesInput.cols = "50"
+        notesInput.rows = "4"
+
+        toDoAddForm.appendChild(notesLabel)
+        toDoAddForm.appendChild(notesInput)
+
+        const addBtn = document.createElement("button")
+        addBtn.id = "submitToDoInfo"
+        addBtn.textContent = "Submit"
+
+        toDoAddForm.appendChild(addBtn)
+        
+        this.content.appendChild(toDoAddForm)
     }
 
     createToDoCard(todoItem, container){
@@ -83,5 +166,5 @@ export class Render{
         viewToDoButton.id = "hide_list"
     }
 
-
+    
 }

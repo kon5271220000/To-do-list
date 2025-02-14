@@ -12,6 +12,10 @@ export class UIcontroller{
         this.render.createProjectAddForm()
     }
 
+    getToDoAddForm(){
+        this.render.createAddToDoForm()
+    }
+
     createNewProject(){
         const nameProject = document.getElementById("nameProject").value
 
