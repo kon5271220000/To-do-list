@@ -64,6 +64,7 @@ export class Render{
     createAddToDoForm(){
         const toDoAddForm = document.createElement("div")
         
+        const tittleDiv = document.createElement("div")
         const titleLable = document.createElement("label")
         titleLable.textContent = "Title: "
         titleLable.for = "toDoTitle"
@@ -72,9 +73,12 @@ export class Render{
         titleInput.name = "toDoTitle"
         titleInput.id = "toDoTitle"
 
-        toDoAddForm.appendChild(titleLable)
-        toDoAddForm.appendChild(titleInput)
+        tittleDiv.appendChild(titleLable)
+        tittleDiv.appendChild(titleInput)
 
+        toDoAddForm.appendChild(tittleDiv)
+
+        const desDiv = document.createElement("div")
         const desLabel = document.createElement("label")
         desLabel.textContent = "Description: "
         desLabel.for = "toDoDes"
@@ -84,9 +88,12 @@ export class Render{
         desInput.cols = "50"
         desInput.rows = "10"
 
-        toDoAddForm.appendChild(desLabel)
-        toDoAddForm.appendChild(desInput)
+        desDiv.appendChild(desLabel)
+        desDiv.appendChild(desInput)
 
+        toDoAddForm.appendChild(desDiv)
+
+        const dueDateDiv = document.createElement("div")
         const dueDateLabel = document.createElement("label")
         dueDateLabel.for = "toDoDueDate"
         dueDateLabel.textContent = "Select due date"
@@ -95,12 +102,19 @@ export class Render{
         dueDateInput.name = "toDoDueDate"
         dueDateInput.id = "toDoDueDate"
 
+        dueDateDiv.appendChild(dueDateLabel)
+        dueDateDiv.appendChild(dueDateInput)
+
+        toDoAddForm.appendChild(dueDateDiv)
+
         const priorityDiv = document.createElement("div")
-        priorityDiv.textContent = "Select priority"
+        const priorityLable = document.createElement("label")
+        priorityLable.textContent = "Select priority: "
+        priorityDiv.appendChild(priorityLable)
         const priorities = [
             {value: "low", lable: "🔵 low"},
             {value: "medium", lable: "🟡 medium"},
-            {value: "high", label: "🔴 higg"}
+            {value: "high", label: "🔴 high"}
         ]
         priorities.forEach(({value, label}) => {
             const radioLabel = document.createElement("label")
@@ -109,7 +123,7 @@ export class Render{
             const radioInput = document.createElement("input")
             radioInput.type = "radio"
             radioInput.name = "priority"
-            radioInput.value = "value"
+            radioInput.value = value
 
             priorityDiv.appendChild(radioLabel)
             priorityDiv.appendChild(radioInput)
@@ -117,6 +131,7 @@ export class Render{
 
         toDoAddForm.appendChild(priorityDiv)
 
+        const notesDiv = document.createElement("div")
         const notesLabel = document.createElement("label")
         notesLabel.for = "toDoNotes"
         notesLabel.textContent = "Notes: "
@@ -126,8 +141,10 @@ export class Render{
         notesInput.cols = "50"
         notesInput.rows = "4"
 
-        toDoAddForm.appendChild(notesLabel)
-        toDoAddForm.appendChild(notesInput)
+        notesDiv.appendChild(notesLabel)
+        notesDiv.appendChild(notesInput)
+
+        toDoAddForm.appendChild(notesDiv)
 
         const addBtn = document.createElement("button")
         addBtn.id = "submitToDoInfo"

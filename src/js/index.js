@@ -44,11 +44,17 @@ document.addEventListener("click", (event) =>{
         uicontroller.hideToDoListBtn()
 
         
+        
+    }
+    if(event.target.id === "add_task"){
+        const projectId = parseInt(event.target.dataset.projectId)
+        uicontroller.getToDoAddForm()
+
+        document.getElementById("submitToDoInfo").addEventListener('click', () => {
+            uicontroller.createNewToDo(projectId)
+        })
     }
 })
 
-document.getElementById("add_task").addEventListener('click', () => {
-    mainContent.innerHTML = ''
-    uicontroller.getToDoAddForm()
-})
+
 

@@ -1,4 +1,5 @@
 import { Project } from "./projects"
+import { toDoItem } from "./to-do-item"
 import { Render } from "./render"
 export class UIcontroller{
     projects = []
@@ -50,6 +51,19 @@ export class UIcontroller{
         for(let i = 0; i < project.todos.length; i++){
             this.render.createToDoCard(project.todos[i], container)
         }
+    }
+
+    createNewToDo(projectId){
+        const project = this.projects.find(p => p.id === projectId)
+
+        const title = document.getElementById("toDoTitle").value
+        const des = document.getElementById("toDoDes").value
+        const dueDate = document.getElementById("toDoDueDate").value
+        const selectedPriority = document.querySelector('input[name="priority"]:checked')
+        const notes = document.getElementById("toDoNotes").value
+        
+        const newToDo = new toDoItem(title, des, dueDate, selectedPriority, notes, false)
+        project.addToDo(newToDo)
     }
 
     hideProject(projectId){
