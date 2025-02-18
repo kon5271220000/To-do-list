@@ -1,60 +1,18 @@
-import { toDoItem } from "./to-do-item"
-import { Project } from "./projects"
-import {UIcontroller} from "./UIcontroller"
-import "../style.css"
+import { Project } from "./project";
+import { ToDoItem } from "./toDoItem";
+import { UIController } from "./uiController";
 
-const uicontroller = new UIcontroller()
-const mainContent = document.getElementById("content")
+const initialProjects = [
+    new Project(101, "Home Work", true),
+    new Project(102, "House Work", true),
+    new Project(103, "Fitness", true)
+]
 
-const project1 = new Project(101, "Home Work", true)
-const project2 = new Project(102, "House Work", true)
-const project3 = new Project(103, "Fitness", true) 
+console.log(initialProjects[0].name)
 
-const todo1 = new toDoItem("coding", "develope a to do list app", "27-12-2000", "high", "none", false)
-const todo2 = new toDoItem("learn vocab", "learn 3 new vocab", "27-12-2000", "medium", "none", false)
-uicontroller.addProject(project1)
-uicontroller.addProject(project2)
-uicontroller.addProject(project3)
+const initialToDoItems = [
+    new ToDoItem("Task1", "Task 1 Description", "2025-02-20", "low", "some notes", false),
+    new ToDoItem("Task2", "Task 2 Description", "2025-02-20", "high", "other notes", true)
+]
 
-project1.addToDo(todo1)
-project1.addToDo(todo2)
-
-//loadPage
-uicontroller.showProjects()
-
-document.getElementById("add_project").addEventListener('click', () => {
-    mainContent.innerHTML = ''
-    uicontroller.getProjectAddForm()
-    
-    document.getElementById("addProjectFormBtn").addEventListener('click', () => {
-        uicontroller.createNewProject()
-    })
-})
-
-document.getElementById("show_project").addEventListener('click', () => {
-    mainContent.innerHTML = ''
-    uicontroller.showProjects()
-})
-
-document.addEventListener("click", (event) =>{
-    if(event.target.id === "view_lists"){
-        const projectId = parseInt(event.target.dataset.projectId)
-        uicontroller.showToDoList(projectId)
-        uicontroller.hideProject(projectId)
-        uicontroller.hideToDoListBtn()
-
-        
-        
-    }
-    if(event.target.id === "add_task"){
-        const projectId = parseInt(event.target.dataset.projectId)
-        uicontroller.getToDoAddForm()
-
-        document.getElementById("submitToDoInfo").addEventListener('click', () => {
-            uicontroller.createNewToDo(projectId)
-        })
-    }
-})
-
-
-
+const uiController = new UIController(initialProjects)
