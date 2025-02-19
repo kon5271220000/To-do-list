@@ -25,13 +25,13 @@ export class Render{
     addProjectForm(){
         const form = document.createElement("div")
         form.classList.add("project-add-form")
-        form.innerHtml = `
+        form.innerHTML = `
             <h3>New Project</h3>
             <form>
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name">
-                <button class="add-project-btn">Add</button>
-            </form>`
+            </form>
+            <button class="add-project-btn" id="add-project-btn">Add</button>`
 
         this.container.appendChild(form)
     }
