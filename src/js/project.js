@@ -8,7 +8,8 @@ export class Project{
         this.isDefault = isDefault
     }
 
-    reUpdatedAt(){
-        this.updatedAt= new Date()
+    addToDoItem(newItem){
+        this.toDoList.push(newItem)
+        this.updatedAt = new Date()
     }
 }

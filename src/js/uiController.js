@@ -1,8 +1,9 @@
 import { Render } from "./render"
 import { Project } from "./project"
+import { ToDoItem } from "./toDoItem"
 export class UIController{
     constructor(initialProjects){
-        this.render = new Render()
+        this.render = new Render(this)
         this.projects = initialProjects
         this.init()
     }
@@ -20,6 +21,7 @@ export class UIController{
         this.render.showProjectCard(project)
     }
 
+
     handleAddProjectForm(){
         document.getElementById("add-project").addEventListener('click', () => {
             this.render.addProjectForm()
@@ -34,5 +36,12 @@ export class UIController{
         })
     }
 
-    
+    addToDoItem(project, item){
+        project.addToDoItem(item)
+    }
+
+    findProjectById(projectId){
+        const project = this.projects.find(p => p.id === projectId)
+        return project
+    }
 }
