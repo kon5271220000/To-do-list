@@ -6,20 +6,23 @@ export class Render{
     showProjectCard(project){
         const card = document.createElement("div")
         card.classList.add("project-card")
+
+        const toDoHtml = ''
+        project.toDoList.forEach(item => {
+            toDoHtml += this.showToDoItemCard(item, project.id)
+        })
+
         card.innerHTML = `
             <h3>#${project.id}-${project.name}</h3>
             <p><strong>Created At:</strong>${project.createdAt}</p>
             <p><strong>Updated At:</strong>${project.updatedAt}</p>
             <button class="show-toDos">Show To Do Item</button>
             <button class="add-toDo">Add To Do Item</button>
-            <div class="to-do-list" style=" dislay:none;">
-                ${project.toDoList.forEach(item => {
-                    this.showToDoItemCard(item, project.id)
-                })}
+            <div class="to-do-list" id="to-do-list${project.id}"></div>
             </div>`
         this.container.appendChild(card)
         
-        this.toggleToDoItem(card)
+        this.toggleToDoItem(card, project)
     }
 
     addProjectForm(){
@@ -36,24 +39,27 @@ export class Render{
         this.container.appendChild(form)
     }
 
-    toggleToDoItem(card){
+    toggleToDoItem(card, project){
         card.querySelector('.show-toDos').addEventListener('click', () => {
-            const toDoList = card.querySelector('.to-do-list')
-            toDoList.style.display = toDoList.style.display === 'none' ? 'block' : 'none'
+            this.showToDoItemCard(project)
         })
     }
 
-    showToDoItemCard(toDoItem, projectId){
-        return `
-            <div class="to-do-item-card">
-            <h4><strong>${toDoItem.title}</strong></h4>
-            <p><strong>Description: </strong>${toDoItem.description}</p>
-            <p><strong>Due Date: </strong>${toDoItem.dueDate}</p>
-            <p><strong>Priority: </strong>${toDoItem.priority}</p>
-            <p><strong>Notes: </strong>${toDoItem.notes}</p>
-            <button class="mark-as-done">Mark as done</button>
-            <button class="edit-to-do">Edit</button>
-            <button class="delete-to-do">Delete</button>
-            </div>`
+    showToDoItemCard(project){
+        const toDoListContain = document.getElementById(`to-do-list${project.id}`)
+        
+        project.toDoList.forEach(item => {
+            const itemCard = document.createElement("div")
+            itemCard.innerHTML = `
+            <h4><strong>${item.title}</strong></h4>
+                <p><strong>Description: </strong>${item.description}</p>
+                <p><strong>Due Date: </strong>${item.dueDate}</p>
+                <p><strong>Priority: </strong>${item.priority}</p>
+                <p><strong>Notes: </strong>${item.notes}</p>
+                <button class="mark-as-done">Mark as done</button>
+                <button class="edit-to-do">Edit</button>
+                <button class="delete-to-do">Delete</button>`
+                toDoListContain.appendChild(itemCard)
+            })   
     }
 }

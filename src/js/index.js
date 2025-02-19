@@ -16,3 +16,10 @@ const initialToDoItems = [
 ]
 
 const uiController = new UIController(initialProjects)
+
+initialToDoItems.forEach(item => {
+    uiController.projects[0].toDoList.push(item)
+})
+
+console.log(uiController.projects[0].name)
+console.log(uiController.projects[0].toDoList)
