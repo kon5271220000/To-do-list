@@ -44,4 +44,16 @@ export class UIController{
         const project = this.projects.find(p => p.id === projectId)
         return project
     }
+
+    removeProject(card,projectId){
+        const project = this.projects.find(p => p.id === projectId)
+        if(project.isDefault === false){
+            card.remove()
+            this.projects = this.projects.filter(p => p.id === projectId)
+            this.projects.forEach(project =>  {
+                console.log(project)
+            })
+        }
+        return this.projects
+    }
 }

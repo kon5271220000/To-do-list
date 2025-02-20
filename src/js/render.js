@@ -9,6 +9,7 @@ export class Render{
     showProjectCard(project){
         const card = document.createElement("div")
         card.classList.add("project-card")
+        card.id = `project-card-${project.id}`
 
         card.innerHTML = `
             <h3>#${project.id}-${project.name}</h3>
@@ -16,13 +17,20 @@ export class Render{
             <p><strong>Updated At:</strong>${project.updatedAt}</p>
             <button class="show-toDos">Show To Do Item</button>
             <button class="add-toDo">Add To Do Item</button>
+            <button class="remove-project" id="remove-project-${project.id}">Remove project</button>
             <div class="to-do-list" id="to-do-list${project.id}"></div>
             </div>`
         this.container.appendChild(card)
         
         this.toggleToDoItem(card, project)
         this.toggleAddToDoItemForm(card, project)
+        this.removeProject(card, project)
+    }
 
+    removeProject(card, project){
+        document.querySelector(`#remove-project-${project.id}`).addEventListener('click', () => {
+            this.ui.removeProject(card, project.id)
+        })
     }
 
     addProjectForm(){
@@ -55,7 +63,7 @@ export class Render{
                 const description = document.getElementById("description").value
                 const dueDate = document.getElementById("due-date").value
                 const priority = document.getElementById("priority").value
-                const notes = document.getElementById("notes")
+                const notes = document.getElementById("notes").value
                 
                 const newItem = new ToDoItem(title, description, dueDate, priority, notes, false)
 
