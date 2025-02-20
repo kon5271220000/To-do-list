@@ -1,0 +1,41 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.sidebar {
+    background-color: lightblue;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 1fr;
+}
+
+.sidebar-controller {
+    display: grid;
+}
+
+.sidebar-controller > button {
+    background-color: lightblue;
+    color: white;
+    border: 0 none;
+    height: 32px;
+    font-size: 16px;
+}
+
+.content {
+    display: grid;
+    gap: 20px;
+}
+
+.project-card {
+    display: grid;
+    border: 2px solid;
+
+}
+
+.project-card h3 {
+    background-color: blue;
+    margin: 0px;
+
+}
+

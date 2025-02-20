@@ -1,7 +1,7 @@
 import { Project } from "./project";
 import { ToDoItem } from "./toDoItem";
 import { UIController } from "./uiController";
-
+import "../style.css"
 const initialProjects = [
     new Project(101, "Home Work", true),
     new Project(102, "House Work", true),
