@@ -76,8 +76,9 @@ export class Render{
         const toDoListContain = document.getElementById(`to-do-list${project.id}`)
         toDoListContain.innerHTML =''
         
-        project.toDoList.forEach(item => {
+        project.toDoList.forEach((item, index) => {
             const itemCard = document.createElement("div")
+            itemCard.id = `to-do-item-${index}`
             itemCard.innerHTML = `
             <h4><strong>${item.title}</strong></h4>
                 <p><strong>Description: </strong>${item.description}</p>
@@ -88,7 +89,12 @@ export class Render{
                 <button class="edit-to-do">Edit</button>
                 <button class="delete-to-do">Delete</button>`
                 toDoListContain.appendChild(itemCard)
-            })   
+
+                const deleteButton = itemCard.querySelector(".delete-to-do")
+                deleteButton.addEventListener('click', () => {
+                    this.removeToDoItem(project, index)
+                })
+            })  
     }
 
     addToDoItemForm(project){
@@ -122,5 +128,12 @@ export class Render{
 
         toDoListContain.innerHTML = ``
         toDoListContain.appendChild(form)
+    }
+
+    removeToDoItem(project, index){
+        const card = document.querySelector(`#to-do-item-${index}`)
+        card.remove()
+
+        project.toDoList.splice(index, 1)
     }
 }
